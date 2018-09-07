@@ -12,7 +12,9 @@ For now, code is only in archival form for testing and analysis; future versions
 The package contains the following libraries
 
 `train_ca` : requires TensorFlow
+
 `ca_funcs` : requires numpy only
+
 `utils` : minor functions that support the main methods. Requires numpy only.
 
 ## Requirements
