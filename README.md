@@ -7,6 +7,17 @@ Gilpin, William. "Cellular automata as convolutional neural networks" 2018. [htt
 
 For now, code is only in archival form for testing and analysis; future versions of this repository will significantly re-factor code into a general-purpose tool for cellular automaton analysis. All versions until a 1.0/PyPI release are thus tentative.
 
+
+## Installation and Requirements
+
+Typical installation time should be 5-10 minutes using Miniconda. This code should work on any operating system supported by Anaconda, but it has only been tested on OSX and Ubuntu.
+
++ Python >3.4
++ TensorFlow
++ numpy
++ matplotlib
++ Jupyter notebooks (for demos)
+
 ## Structure
 
 The package contains the following libraries
@@ -17,15 +28,10 @@ The package contains the following libraries
 
 `utils` : minor functions that support the main methods. Requires numpy only.
 
-## Requirements
 
-+ Python >3.4
-+ TensorFlow
-+ numpy
-+ matplotlib
-+ Jupyter notebooks (for demos)
+## Demos
 
-
+The `demos` illustrates a minimal example of training a CNN on the Game of Life, including example outputs.
 
 
 # To Do

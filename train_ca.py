@@ -103,49 +103,6 @@ class ConvNet(object):
             assert self.init_new_model()
 
 
-        ## Parameters derived from the graph
-        #self.layer_dims = layer_dims
-        # self.num_filters = layer_dims[0]
-        # self.num_layers = len(layer_dims)
-        # self.num_hidden = self.num_layers - 1
-
-        # if not self.ckpt_loaded:
-        #     assert self.init_new_model()
-        #     self.conv_filters_params = {
-        #         'Wfilt': tf.Variable(weight_scale*kaiming_normal([filter_size, filter_size, 1, self.num_filters]), name='Wfilt'),
-        #         'bfilt': tf.Variable(weight_scale*kaiming_normal([self.num_filters,]), name='bfilt'),
-        #     }
-            
-        #     self.hidden_params = {}
-        #     for ii in range(1, self.num_layers):
-        #         wh_name = 'Wh'+str(ii)
-        #         bh_name = 'bh'+str(ii)
-        #         self.hidden_params[wh_name] = tf.Variable(weight_scale*kaiming_normal([layer_dims[ii-1],
-        #                                                                                   layer_dims[ii]]), name=wh_name)
-        #         self.hidden_params[bh_name] = tf.Variable(weight_scale*kaiming_normal([layer_dims[ii],]), name=bh_name)
-
-        #     # print(self.sess.run(self.test))
-        #     # print(sess.run(tf.report_uninitialized_variables()))
-        #     sess.run(tf.global_variables_initializer())
-
-        # else:
-
-        #     sess.run(tf.global_variables_initializer())
-        #     self.conv_filters_params = {
-        #         'Wfilt': all_vars[0],
-        #         'bfilt': all_vars[1],
-        #     }
-
-        #     self.hidden_params = {}
-        #     for ii in range(1, self.num_layers):
-        #         wh_name = 'Wh'+str(ii)
-        #         bh_name = 'bh'+str(ii)
-        #         self.hidden_params[wh_name] = all_vars[2*ii]
-                                              
-        #         self.hidden_params[bh_name] = all_vars[2*ii+1]
-
-        #     assert self.load_from_ckpt()
-        
         
         
 
@@ -160,7 +117,8 @@ class ConvNet(object):
         layer_dims = self.layer_dims
 
         self.conv_filters_params = {
-            'Wfilt': tf.Variable(weight_scale*kaiming_normal([filter_size, filter_size, 1, self.num_filters]), name='Wfilt'),
+            'Wfilt': tf.Variable(weight_scale*kaiming_normal([filter_size, filter_size, 1, self.num_filters]), 
+                name='Wfilt'),
             'bfilt': tf.Variable(weight_scale*kaiming_normal([self.num_filters,]), name='bfilt'),
         }
         
@@ -243,7 +201,8 @@ class ConvNet(object):
         current_state = tf.cast(tf.reshape(state_pad,[1, hspan+2*pad_size, wspan+2*pad_size, 1]), tf.float32)
         
         # First convolutional layer
-        conv1 = tf.nn.conv2d(current_state, self.conv_filters_params['Wfilt'], strides=self.all_strides, padding='VALID')
+        conv1 = tf.nn.conv2d(current_state, self.conv_filters_params['Wfilt'], 
+            strides=self.all_strides, padding='VALID')
         conv1_b = tf.nn.bias_add(conv1,self.conv_filters_params['bfilt'])
         conv1_activated = tf.nn.relu(conv1_b)
         conv1_flat = tf.reshape(conv1_activated, [wspan*hspan, self.num_filters])
@@ -251,7 +210,8 @@ class ConvNet(object):
         # Cycle through the hidden layers
         curr = conv1_flat
         for ii in range(1, self.num_layers):
-            neural_state = tf.nn.bias_add( tf.matmul(curr, self.hidden_params['Wh'+str(ii)]), self.hidden_params['bh'+str(ii)])
+            neural_state = tf.nn.bias_add( tf.matmul(curr, self.hidden_params['Wh'+str(ii)]), 
+                self.hidden_params['bh'+str(ii)])
             neural_state_activated = tf.nn.relu(neural_state)
             curr = neural_state_activated
 
@@ -289,7 +249,8 @@ class ConvNet(object):
         current_state = tf.cast(tf.reshape(state_pad,[1, hspan+2*pad_size, wspan+2*pad_size, 1]), tf.float32)
         
         # First convolutional layer
-        conv1 = tf.nn.conv2d(current_state, self.conv_filters_params['Wfilt'], strides=self.all_strides, padding='VALID')
+        conv1 = tf.nn.conv2d(current_state, self.conv_filters_params['Wfilt'], 
+            strides=self.all_strides, padding='VALID')
         conv1_b = tf.nn.bias_add(conv1, self.conv_filters_params['bfilt'])
         conv1_activated = tf.nn.relu(conv1_b)
         conv1_flat = tf.reshape(conv1_activated, [wspan*hspan, self.num_filters])
@@ -301,7 +262,8 @@ class ConvNet(object):
         # Cycle through the hidden layers
         curr = conv1_flat
         for ii in range(1, 1+num_hidden):
-            neural_state = tf.nn.bias_add( tf.matmul(curr, self.hidden_params['Wh'+str(ii)]), self.hidden_params['bh'+str(ii)])
+            neural_state = tf.nn.bias_add( tf.matmul(curr, self.hidden_params['Wh'+str(ii)]), 
+                self.hidden_params['bh'+str(ii)])
             neural_state_activated = tf.nn.relu(neural_state)
             curr = neural_state_activated
             
@@ -354,8 +316,6 @@ class ConvNet(object):
         
         return all_out
 
-
-
     def load_ca(self, model_path):
         """
         Given a path to a checkpoint file, load the trained model and fill out the appropriate parameters
@@ -373,8 +333,6 @@ class ConvNet(object):
         ca_model = self.ca_cnn()
 
         saver.restore(self.sess, model_path)
-
-        
 
         return ca_model
 
