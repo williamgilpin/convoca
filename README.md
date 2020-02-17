@@ -9,7 +9,7 @@ This code can both implement and analyze known CA rulesets using TensorFlow, as 
 
 If you find this code useful, please consider citing the accompanying arXiv preprint:
 
-> Gilpin, William. "Cellular automata as convolutional neural networks" 2018. [https://arxiv.org/abs/1809.02942](https://arxiv.org/abs/1809.02942)
+> Gilpin, William. "Cellular automata as convolutional neural networks." Physical Review E 100.3 (2019): 032402. [arXiv](https://arxiv.org/abs/1809.02942)
 
 For now, code is only in archival form for testing and analysis; future versions of this repository will significantly re-factor code into a general-purpose tool for cellular automaton analysis. All versions until a 1.0/PyPI release are thus tentative.
 
