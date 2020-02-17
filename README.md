@@ -7,7 +7,7 @@ Demonstrate and learn cellular automata using convolutional neural networks in T
 The video above shows different stages of training a network to learn Conway's Game of Life. 
 This code can both implement and analyze known CA rulesets using TensorFlow, as well as learn the rules of unknown CA given image sequences as training data.
 
-If you find this code useful, please consider citing the accompanying arXiv preprint:
+If you find this code useful, please consider citing the accompanying publication:
 
 > Gilpin, William. "Cellular automata as convolutional neural networks." Physical Review E 100.3 (2019): 032402. [arXiv](https://arxiv.org/abs/1809.02942)
 
