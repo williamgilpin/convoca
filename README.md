@@ -14,6 +14,10 @@ If you find this code useful, please consider citing the accompanying publicatio
 
 ## Installation and Requirements
 
+Install directly from GitHub using
+
+	pip install git+git://github.com/williamgilpin/convoca
+
 Typical installation with Miniconda. This code has been tested on macOS and Ubuntu.
 
 + Python >3.4
