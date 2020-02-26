@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import tensorflow as tf
 import collections
 
 from itertools import product
@@ -98,6 +99,9 @@ def bin2int(arr, axis=0):
     """
     pow2 = 2**np.arange(arr.shape[axis], dtype=np.uint64)
     return np.sum(arr*pow2, axis=axis).astype(int)
+
+
+
 
 def all_combinations(m,d=9):
     '''

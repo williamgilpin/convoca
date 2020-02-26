@@ -11,15 +11,13 @@ If you find this code useful, please consider citing the accompanying publicatio
 
 > Gilpin, William. "Cellular automata as convolutional neural networks." Physical Review E 100.3 (2019): 032402. [arXiv](https://arxiv.org/abs/1809.02942)
 
-For now, code is only in archival form for testing and analysis; future versions of this repository will significantly re-factor code into a general-purpose tool for cellular automaton analysis. All versions until a 1.0/PyPI release are thus tentative.
-
 
 ## Installation and Requirements
 
-Typical installation time should be 5-10 minutes using Miniconda. This code should work on any operating system supported by Anaconda, but it has only been tested on macOS and Ubuntu.
+Typical installation with Miniconda. This code has been tested on macOS and Ubuntu.
 
 + Python >3.4
-+ TensorFlow
++ TensorFlow >2.0
 + numpy
 + matplotlib
 + Jupyter notebooks (for demos)
@@ -34,13 +32,18 @@ The package contains the following libraries
 
 `utils` : minor functions that support the main methods. Requires numpy only.
 
+`demos.ipynb` : demonstration of the code for learning the game of live
+
 
 ## Demos
 
-The `demos` illustrates a minimal example of training a CNN on the Game of Life, including example outputs.
+The `demos.ipynb` illustrates a minimal example of training a CNN on the Game of Life, including example outputs.
 
+## Updates
 
-# To Do
+As of 2.26.2020, the code has been significantly re-factored to use Tensorflow 2.0 and Keras.  The previous implementation has been placed in the "resources" directory, for reference.
+
+## Planned future work
 
 + Add methods for simulating totalistic CA
 + Add methods for Moore neighborhood CA

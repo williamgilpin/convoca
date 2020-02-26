@@ -60,6 +60,8 @@ def make_table_walk(nbins, known_rule=''):
     return all_rules
    
 
+
+
 def get_network_entropies(feature_map):
     '''
     Given a list of directories containing fully-trained models, find the 
@@ -98,6 +100,18 @@ def get_network_entropies(feature_map):
 
     out = (whole_ent, layer_ent, neuron_ent)  
     return out
+
+
+
+def kaiming_normal(shape):
+    '''
+    An implementation of the normalization described
+    by He et al.  https://arxiv.org/abs/1502.01852   
+    '''
+    fan_in, fan_out = np.prod(shape[:-1]), shape[-1]
+    return tf.random_normal(shape)*np.sqrt(2.0/fan_in)
+
+
 
 def periodic_padding(image, padding=1):
     '''
