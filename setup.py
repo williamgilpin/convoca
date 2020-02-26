@@ -8,7 +8,6 @@ setup(
     author_email='firstnamelastname(as one word)@googleemailservice',
     requires=[ 'numpy', 'matplotlib', 'tensorflow'],
     py_modules=['config'],
-    packages=['convoca', ],
     package_data={
     'ca_funcs': ['*'],
     'train_ca': ['*'],
